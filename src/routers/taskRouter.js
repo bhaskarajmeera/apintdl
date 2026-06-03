@@ -26,11 +26,15 @@ fakeDB.push(data);
 console.log(fakeDB);
     res.json({
         status:"success",
-        message:"data has been added in database"
+        message:"data has been added in database",
+        tasks: fakeDB,
     })
 })
 
-router.put("/",(req,res,next)=>{
+router.patch("/",(req,res,next)=>{
+console.log(req.body);
+
+
 
     res.json({
         status:"success",
@@ -38,11 +42,14 @@ router.put("/",(req,res,next)=>{
     })
 })
 
-router.delete("/",(req,res,next)=>{
+router.delete("/:id",(req,res,next)=>{
 
+    const {id} =req.params;
+    console.log(id);
+fakeDB = fakeDB.filter(item=>item.id!==+id)
     res.json({
         status:"success",
-        message:"response from delete"
+        message:"task has been deleted "
     })
 })
 
